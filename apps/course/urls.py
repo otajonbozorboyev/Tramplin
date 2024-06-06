@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import MoviesModelViewSet
+from .views import CourseAPIView, CourseModuleAPIView
 
 urlpatterns = [
-    path("", MoviesModelViewSet.as_view())
+    path("", CourseAPIView.as_view()),
+    path("module/", CourseModuleAPIView.as_view()),
 ]

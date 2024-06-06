@@ -9,8 +9,8 @@ class Course(BaseModel):
 
     name = models.CharField(max_length=50)
     price = models.IntegerField()
-    icon = models.ImageField(null=True, blank=True)
-    thumbnail = models.ImageField(null=True, blank=True)
+    icon = models.ImageField(upload_to="Course/Icon", null=True, blank=True)
+    thumbnail = models.ImageField(upload_to="Course/Thumbnail", null=True, blank=True)
     is_active = models.BooleanField(default=True)
     introduction_video = models.FileField(null=True, blank=True)
     course_period_in_month = models.PositiveIntegerField()
@@ -35,7 +35,7 @@ class CourseModule(BaseModel):
 class CourseModuleIcons(BaseModel):
     course_module = models.ForeignKey(CourseModule, CASCADE)
 
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(upload_to="Course", null=True, blank=True)
 
     def __str__(self) -> str:
         return f"{self.id}"

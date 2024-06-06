@@ -11,15 +11,13 @@ class Mentor(BaseModel):
     experience = models.DateField()
     tags = models.ManyToManyField(Tag)
     is_active = models.BooleanField(default=True)
-
-    def __str__(self) -> str:
-        return self.full_name
-
-
-class MentorAssistant(BaseModel):
-    full_name = models.CharField(max_length=100)
-    avatar = models.OneToOneField(Mentor, CASCADE, null=True, blank=True)
-    position = models.PositiveIntegerField()
+    mentor_assistant = models.ForeignKey(
+        "self",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="assistant"
+    )
 
     def __str__(self) -> str:
         return self.full_name

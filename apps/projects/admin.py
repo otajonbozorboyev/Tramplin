@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import StudentProject, StudentProjectImages
+from .models import StudentProject
 
 admin.site.register(StudentProject)
-admin.site.register(StudentProjectImages)
