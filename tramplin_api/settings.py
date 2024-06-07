@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-vk4r@x6m9a1_cea^4$&9ada#a3!6leqmj6v@%#ra0z#@k6xh8#'
-
+from corsheaders.conf import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'corsheaders',
     'rest_framework',
     "debug_toolbar",
 
@@ -52,6 +52,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -63,6 +65,10 @@ MIDDLEWARE = [
 ]
 
 INTERNAL_IPS = ["127.0.0.1", "192.168.100.190"]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'tramplin_api.urls'
 
