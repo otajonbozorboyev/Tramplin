@@ -9,8 +9,8 @@ class Course(BaseModel):
 
     name = models.CharField(max_length=50)
     price = models.IntegerField()
-    icon = models.ImageField(upload_to="Course/Icon", null=True, blank=True)
-    thumbnail = models.ImageField(upload_to="Course/Thumbnail", null=True, blank=True)
+    icon = models.FileField(upload_to="Course/Icon", null=True, blank=True)
+    thumbnail = models.FileField(upload_to="Course/Thumbnail", null=True, blank=True)
     is_active = models.BooleanField(default=True)
     introduction_video = models.FileField(null=True, blank=True)
     course_period_in_month = models.PositiveIntegerField()
