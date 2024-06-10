@@ -1,4 +1,4 @@
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -12,6 +12,11 @@ class CourseAPIView(ListAPIView):
     serializer_class = CourseSerializer
 
 
+class CourseDetailAPIView(RetrieveAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+
+
 class CourseModuleAPIView(APIView):
     serializer_class = CourseModuleSerializer
 
@@ -19,4 +24,3 @@ class CourseModuleAPIView(APIView):
         model = CourseModule.objects.select_related("course")  # .all() ertaga ko'rsatiladi
         serializer = self.serializer_class(model, many=True)
         return Response(serializer.data)
-
