@@ -2,7 +2,7 @@ from django.db import models
 from apps.core.models.base_model import BaseModel
 
 
-class Tag(BaseModel): 
+class Tag(BaseModel):
     name = models.CharField(max_length=50, unique=True)
 
     def __str__(self) -> str:
@@ -18,3 +18,14 @@ class StaticData(BaseModel):
 
     def __str__(self) -> str:
         return f"{self.id}"
+
+
+class Statistic(BaseModel):
+    mentors = models.SmallIntegerField()
+    graduate = models.SmallIntegerField()
+    average_salary = models.PositiveIntegerField()
+    find_job = models.SmallIntegerField()
+    desc = models.CharField(max_length=5000)
+
+    def __str__(self):
+        return f"{self.mentors}"

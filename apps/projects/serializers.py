@@ -6,4 +6,4 @@ from apps.projects.models import StudentProject
 class StudentProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentProject
-        fields = "__all__"
+        fields = ("id", "title", "description", "is_active", "is_selected", "image", "people_image")

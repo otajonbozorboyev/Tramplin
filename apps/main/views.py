@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from rest_framework.generics import RetrieveAPIView
 
-# Create your views here.
+from apps.main.models import Statistic
+from apps.main.serializers import StatisticSerializer
+
+
+class StatisticAPIView(RetrieveAPIView):
+    queryset = Statistic.objects.all()
+    serializer_class = StatisticSerializer
+
+    def get_object(self):
+        return Statistic.objects.first()
