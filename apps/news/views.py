@@ -5,7 +5,5 @@ from apps.news.serializers.news import NewsSerializer
 
 
 class NewsAPIView(ListAPIView):
+    queryset = News.objects.all().order_by('-id')[:3]
     serializer_class = NewsSerializer
-
-    def get_queryset(self, request):
-        return News.objects.all().order_by('-id')[:3]

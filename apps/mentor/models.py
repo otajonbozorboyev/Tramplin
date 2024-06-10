@@ -17,7 +17,7 @@ class Assistant(models.Model):
 
 class Mentor(BaseModel):
     full_name = models.CharField(max_length=100)
-    avatar = models.ImageField()
+    avatar = models.ImageField(upload_to="mentor/")
     position = models.PositiveIntegerField()
     experience = models.DateField()
     tags = models.ManyToManyField(Tag)

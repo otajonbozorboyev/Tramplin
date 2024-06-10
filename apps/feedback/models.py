@@ -9,7 +9,7 @@ class Feedback(BaseModel):
 
     full_name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=255)
-    status = models.CharField(max_length=255, choices=FEEDBACK_STATUS.choices)
+    status = models.CharField(max_length=255, choices=FEEDBACK_STATUS.choices, default=FEEDBACK_STATUS.NEW)
 
     def __str__(self) -> str:
         return f"{self.full_name}"
