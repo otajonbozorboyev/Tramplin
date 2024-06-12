@@ -21,11 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-vk4r@x6m9a1_cea^4$&9ada#a3!6leqmj6v@%#ra0z#@k6xh8#'
-from corsheaders.conf import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = os.getenv('DEBUG', '').lower() == 'true'
 DEBUG = True
-
 ALLOWED_HOSTS = ["*"]
 
 # Application definition
@@ -195,12 +194,24 @@ JAZZMIN_SETTINGS = {
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# if not DEBUG:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': os.getenv('DB_NAME'),  # DB_NAME
+#             'USER': os.getenv('DB_USER'),  # DB_USER
+#             'PASSWORD': os.getenv('DB_PASSWORD'),  # DB_PASSWORD
+#             'HOST': os.getenv('DB_HOST'),  # DB_HOST
+#             'PORT': os.getenv('DB_PORT'),  # DB_PORT
+#         }
+#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -234,7 +245,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'

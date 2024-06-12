@@ -6,10 +6,10 @@ from apps.core.models.base_model import BaseModel
 class News(BaseModel):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    thumblnail = models.ImageField(upload_to='thumbnail/')
+    thumbnail = models.ImageField(upload_to='thumbnail/')
 
     def __str__(self) -> str:
-        return self.title
+        return f"{self.title}"
 
 
 class NewsImages(BaseModel):

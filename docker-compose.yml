@@ -1,0 +1,26 @@
+version: "3"
+services:
+  front:
+    build: .
+    env_file:
+      - tramplin_api/.env
+    command: ["bash", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8090"]
+    volumes:
+      - .:/tramplin_api
+    ports:
+      - "8090:8090"
+    depends_on:
+      - db-1
+  db-1:
+    image: postgres
+    environment:
+      POSTGRES_DB: tramplin # istalgan databaza nomi bu env bilan bir hil bo'lishi kerak
+      POSTGRES_PASSWORD: postgres # bu ham shu env bilan bog'liq bo'lishi kerak
+      POSTGRES_USER: user_postgres # bu ham huddi shu env bilan bog'liq
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/ # bu joyini aniq bilmadimu lekin shunaqa bo'lishi shart
+    ports:
+      - "5435:5434" # bu narsa shu db nomlu servisimizning ishlash portlari
+
+volumes:
+  postgres_data:
