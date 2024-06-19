@@ -21,6 +21,6 @@ class CourseModuleAPIView(APIView):
     serializer_class = CourseModuleSerializer
 
     def get(self, request):
-        model = CourseModule.objects.select_related("course")  # .all() ertaga ko'rsatiladi
+        model = CourseModule.objects.select_related("course")  # .all() sinab ko'rish
         serializer = self.serializer_class(model, many=True)
         return Response(serializer.data)
